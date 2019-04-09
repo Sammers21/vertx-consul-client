@@ -13,25 +13,26 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package examples;
+package io.vertx.ext.consul.v1.suite;
 
-import io.vertx.core.Vertx;
-import io.vertx.ext.consul.v1.v1.Watch;
+import io.vertx.core.json.JsonObject;
+import io.vertx.ext.consul.v1.ConsulTestBase;
+import io.vertx.ext.unit.TestContext;
+import io.vertx.ext.unit.junit.VertxUnitRunner;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * @author <a href="mailto:ruslan.sennov@gmail.com">Ruslan Sennov</a>
  */
-public class Watches {
+@RunWith(VertxUnitRunner.class)
+public class AgentInfo extends ConsulTestBase {
 
-  public void watchKey(Vertx vertx) {
-    Watch.key("foo/bar", vertx)
-      .setHandler(res -> {
-        if (res.succeeded()) {
-          System.out.println("value: " + res.nextResult().getValue());
-        } else {
-          res.cause().printStackTrace();
-        }
-      })
-      .start();
+  @Test
+  public void info(TestContext tc) {
+    ctx.readClient().agentInfo(tc.asyncAssertSuccess(info -> {
+      JsonObject config = info.getJsonObject("Config");
+      tc.assertEquals(config.getString("Datacenter"), ctx.dc().getName());
+    }));
   }
 }

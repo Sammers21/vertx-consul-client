@@ -13,25 +13,31 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package examples;
-
-import io.vertx.core.Vertx;
-import io.vertx.ext.consul.v1.v1.Watch;
+package io.vertx.ext.consul.v1.v1;
 
 /**
+ * Acl token type is either "client" (meaning the token cannot modify ACL rules) or "management"
+ * (meaning the token is allowed to perform all actions).
+ *
  * @author <a href="mailto:ruslan.sennov@gmail.com">Ruslan Sennov</a>
+ * @see <a href="https://www.consul.io/docs/internals/acl.html">Acl Consul system</a>
  */
-public class Watches {
+public enum AclTokenType {
 
-  public void watchKey(Vertx vertx) {
-    Watch.key("foo/bar", vertx)
-      .setHandler(res -> {
-        if (res.succeeded()) {
-          System.out.println("value: " + res.nextResult().getValue());
-        } else {
-          res.cause().printStackTrace();
-        }
-      })
-      .start();
+  CLIENT("client"),
+  MANAGEMENT("management");
+
+  public final String key;
+
+  public static AclTokenType of(String name) {
+    if (name == null) {
+      return null;
+    } else {
+      return CLIENT.key.equals(name) ? CLIENT : MANAGEMENT;
+    }
+  }
+
+  AclTokenType(String key) {
+    this.key = key;
   }
 }

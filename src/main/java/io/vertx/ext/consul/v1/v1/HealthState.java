@@ -13,25 +13,32 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package examples;
-
-import io.vertx.core.Vertx;
-import io.vertx.ext.consul.v1.v1.Watch;
+package io.vertx.ext.consul.v1.v1;
 
 /**
- * @author <a href="mailto:ruslan.sennov@gmail.com">Ruslan Sennov</a>
+ * Represents an health states.
+ *
+ * @author Lukas Prettenthaler
  */
-public class Watches {
+public enum HealthState {
 
-  public void watchKey(Vertx vertx) {
-    Watch.key("foo/bar", vertx)
-      .setHandler(res -> {
-        if (res.succeeded()) {
-          System.out.println("value: " + res.nextResult().getValue());
-        } else {
-          res.cause().printStackTrace();
-        }
-      })
-      .start();
+  PASSING("passing"),
+  WARNING("warning"),
+  CRITICAL("critical"),
+  ANY("any");
+
+  public final String key;
+
+  public static HealthState of(String key) {
+    for (HealthState checkStatus : values()) {
+      if (checkStatus.key.equals(key)) {
+        return checkStatus;
+      }
+    }
+    return null;
+  }
+
+  HealthState(String key) {
+    this.key = key;
   }
 }

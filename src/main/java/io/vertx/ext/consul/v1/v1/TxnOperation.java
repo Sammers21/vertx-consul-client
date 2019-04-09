@@ -13,25 +13,21 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package examples;
-
-import io.vertx.core.Vertx;
-import io.vertx.ext.consul.v1.v1.Watch;
+package io.vertx.ext.consul.v1.v1;
 
 /**
+ * Represents operation in transaction. Key/Value is the only available operation type,
+ * though other types of operations may be added in future versions of Consul to be mixed with key/value operations
+ *
  * @author <a href="mailto:ruslan.sennov@gmail.com">Ruslan Sennov</a>
  */
-public class Watches {
+public interface TxnOperation {
 
-  public void watchKey(Vertx vertx) {
-    Watch.key("foo/bar", vertx)
-      .setHandler(res -> {
-        if (res.succeeded()) {
-          System.out.println("value: " + res.nextResult().getValue());
-        } else {
-          res.cause().printStackTrace();
-        }
-      })
-      .start();
-  }
+  /**
+   * Returns the type of operation in a transaction
+   *
+   * @return the type of operation in a transaction
+   */
+  TxnOperationType getOperationType();
+
 }

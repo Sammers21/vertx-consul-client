@@ -13,25 +13,35 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package examples;
+package io.vertx.ext.consul.v1.common;
 
 import io.vertx.core.Vertx;
-import io.vertx.ext.consul.v1.v1.Watch;
+import org.junit.Test;
+
+import java.util.concurrent.CountDownLatch;
 
 /**
  * @author <a href="mailto:ruslan.sennov@gmail.com">Ruslan Sennov</a>
  */
-public class Watches {
+public class StateConsumerTest {
 
-  public void watchKey(Vertx vertx) {
-    Watch.key("foo/bar", vertx)
-      .setHandler(res -> {
-        if (res.succeeded()) {
-          System.out.println("value: " + res.nextResult().getValue());
-        } else {
-          res.cause().printStackTrace();
-        }
-      })
-      .start();
+  @Test
+  public void test1() throws InterruptedException {
+    final Vertx vertx = Vertx.vertx();
+    final StateConsumer<Integer> consumer = new StateConsumer<>(false);
+    final CountDownLatch latch = new CountDownLatch(1);
+    final int n = 100000;
+    vertx.runOnContext(v -> {
+      latch.countDown();
+      for (int i = 0; i < n; i++) {
+        consumer.consume(i);
+      }
+    });
+    latch.await();
+    for (int i = 0; i < n; i++) {
+      consumer.await(i);
+    }
+    consumer.check();
+    vertx.close();
   }
 }

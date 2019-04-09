@@ -15,9 +15,9 @@
  */
 package examples;
 
-import io.vertx.ext.consul.BlockingQueryOptions;
-import io.vertx.ext.consul.ConsulClient;
-import io.vertx.ext.consul.NodeQueryOptions;
+import io.vertx.ext.consul.v1.v1.BlockingQueryOptions;
+import io.vertx.ext.consul.v1.v1.ConsulClient;
+import io.vertx.ext.consul.v1.v1.NodeQueryOptions;
 
 /**
  * @author <a href="mailto:ruslan.sennov@gmail.com">Ruslan Sennov</a>

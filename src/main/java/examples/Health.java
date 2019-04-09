@@ -15,8 +15,8 @@
  */
 package examples;
 
-import io.vertx.ext.consul.CheckOptions;
-import io.vertx.ext.consul.ConsulClient;
+import io.vertx.ext.consul.v1.v1.CheckOptions;
+import io.vertx.ext.consul.v1.v1.ConsulClient;
 
 /**
  * @author <a href="mailto:ruslan.sennov@gmail.com">Ruslan Sennov</a>

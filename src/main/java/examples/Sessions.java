@@ -15,7 +15,11 @@
  */
 package examples;
 
-import io.vertx.ext.consul.*;
+import io.vertx.ext.consul.v1.v1.BlockingQueryOptions;
+import io.vertx.ext.consul.v1.v1.ConsulClient;
+import io.vertx.ext.consul.v1.v1.Session;
+import io.vertx.ext.consul.v1.v1.SessionBehavior;
+import io.vertx.ext.consul.v1.v1.SessionOptions;
 
 /**
  * @author <a href="mailto:ruslan.sennov@gmail.com">Ruslan Sennov</a>

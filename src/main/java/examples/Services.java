@@ -15,7 +15,13 @@
  */
 package examples;
 
-import io.vertx.ext.consul.*;
+import io.vertx.ext.consul.v1.v1.BlockingQueryOptions;
+import io.vertx.ext.consul.v1.v1.CheckOptions;
+import io.vertx.ext.consul.v1.v1.ConsulClient;
+import io.vertx.ext.consul.v1.v1.Service;
+import io.vertx.ext.consul.v1.v1.ServiceEntry;
+import io.vertx.ext.consul.v1.v1.ServiceOptions;
+import io.vertx.ext.consul.v1.v1.ServiceQueryOptions;
 
 import java.util.Arrays;
 

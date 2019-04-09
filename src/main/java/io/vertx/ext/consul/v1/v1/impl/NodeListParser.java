@@ -13,25 +13,27 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package examples;
+package io.vertx.ext.consul.v1.v1.impl;
 
-import io.vertx.core.Vertx;
-import io.vertx.ext.consul.v1.v1.Watch;
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
+import io.vertx.ext.consul.v1.v1.Node;
+import io.vertx.ext.consul.v1.v1.NodeList;
+
+import java.util.stream.Collectors;
 
 /**
  * @author <a href="mailto:ruslan.sennov@gmail.com">Ruslan Sennov</a>
  */
-public class Watches {
+class NodeListParser {
 
-  public void watchKey(Vertx vertx) {
-    Watch.key("foo/bar", vertx)
-      .setHandler(res -> {
-        if (res.succeeded()) {
-          System.out.println("value: " + res.nextResult().getValue());
-        } else {
-          res.cause().printStackTrace();
-        }
-      })
-      .start();
+  private static final String INDEX_KEY = "Index";
+  private static final String LIST_KEY = "List";
+
+  static NodeList parse(JsonObject json) {
+    return new NodeList()
+      .setIndex(json.getLong(INDEX_KEY, 0L))
+      .setList(json.getJsonArray(LIST_KEY, new JsonArray()).stream()
+        .map(obj -> new Node((JsonObject) obj)).collect(Collectors.toList()));
   }
 }

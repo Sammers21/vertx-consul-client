@@ -15,9 +15,9 @@
  */
 package examples;
 
-import io.vertx.ext.consul.ConsulClient;
-import io.vertx.ext.consul.PreparedQueryDefinition;
-import io.vertx.ext.consul.PreparedQueryExecuteResponse;
+import io.vertx.ext.consul.v1.v1.ConsulClient;
+import io.vertx.ext.consul.v1.v1.PreparedQueryDefinition;
+import io.vertx.ext.consul.v1.v1.PreparedQueryExecuteResponse;
 
 import java.util.Arrays;
 
