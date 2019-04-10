@@ -1,11 +1,28 @@
 package io.vertx.ext.consul.v2;
 
 
+import io.vertx.ext.consul.v2.acl.ACL;
+import io.vertx.ext.consul.v2.agent.Agent;
+import io.vertx.ext.consul.v2.kv.KV;
+
+/**
+ * A client for Consul HTTP API.
+ */
 public interface ConsulClient {
 
-  KV kv();
-
+  /**
+   * Get the ACL object. Only a single instance of {@link ACL} per {@link ConsulClient} instance.
+   *
+   * @return the ACL object
+   */
   ACL acl();
+
+  /**
+   * Get the KV object. Only a single instance of {@link KV} per {@link ConsulClient} instance.
+   *
+   * @return the KV object
+   */
+  KV kv();
 
   Agent agent();
 
