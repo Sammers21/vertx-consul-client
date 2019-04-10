@@ -16,7 +16,7 @@
 package examples;
 
 import io.vertx.core.Vertx;
-import io.vertx.ext.consul.v1.v1.Watch;
+import io.vertx.ext.consul.v1.Watch;
 
 /**
  * @author <a href="mailto:ruslan.sennov@gmail.com">Ruslan Sennov</a>

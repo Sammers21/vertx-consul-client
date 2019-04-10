@@ -15,13 +15,13 @@
  */
 package examples;
 
-import io.vertx.ext.consul.v1.v1.BlockingQueryOptions;
-import io.vertx.ext.consul.v1.v1.ConsulClient;
-import io.vertx.ext.consul.v1.v1.KeyValue;
-import io.vertx.ext.consul.v1.v1.KeyValueOptions;
-import io.vertx.ext.consul.v1.v1.TxnKVOperation;
-import io.vertx.ext.consul.v1.v1.TxnKVVerb;
-import io.vertx.ext.consul.v1.v1.TxnRequest;
+import io.vertx.ext.consul.v1.BlockingQueryOptions;
+import io.vertx.ext.consul.v1.ConsulClient;
+import io.vertx.ext.consul.v1.KeyValue;
+import io.vertx.ext.consul.v1.KeyValueOptions;
+import io.vertx.ext.consul.v1.TxnKVOperation;
+import io.vertx.ext.consul.v1.TxnKVVerb;
+import io.vertx.ext.consul.v1.TxnRequest;
 
 /**
  * @author <a href="mailto:ruslan.sennov@gmail.com">Ruslan Sennov</a>

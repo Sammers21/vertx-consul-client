@@ -15,11 +15,11 @@
  */
 package examples;
 
-import io.vertx.ext.consul.v1.v1.BlockingQueryOptions;
-import io.vertx.ext.consul.v1.v1.ConsulClient;
-import io.vertx.ext.consul.v1.v1.Event;
-import io.vertx.ext.consul.v1.v1.EventListOptions;
-import io.vertx.ext.consul.v1.v1.EventOptions;
+import io.vertx.ext.consul.v1.BlockingQueryOptions;
+import io.vertx.ext.consul.v1.ConsulClient;
+import io.vertx.ext.consul.v1.Event;
+import io.vertx.ext.consul.v1.EventListOptions;
+import io.vertx.ext.consul.v1.EventOptions;
 
 /**
  * @author <a href="mailto:ruslan.sennov@gmail.com">Ruslan Sennov</a>
